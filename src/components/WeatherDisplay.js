@@ -4,8 +4,8 @@ import Icon from "./Icon";
 
 const WeatherDisplay = props => {
     return (
-        <div>
-            <Icon />
+        <div className={classes.display}>
+            <Icon condition={props.condition}/>
             <MainStats data={props.data}/>
         </div>
     )

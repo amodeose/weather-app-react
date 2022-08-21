@@ -8,6 +8,7 @@ import WeatherDisplay from './components/WeatherDisplay';
 function App() {
 
   const [data, setData] = useState("");
+  const [condition, setCondition] = useState("");
   const [dataExists, setDataExists] = useState(false);
 
   const lat = 43.707310971342956;
@@ -18,8 +19,8 @@ function App() {
     fetch(URL).then(response => {
       return response.json();
     }).then(data => {
-      console.log(data.main);
       setData(data.main);
+      setCondition(data.weather[0].main)
       setDataExists(true);
     })
   }
@@ -28,7 +29,7 @@ function App() {
     <div>
       <Card>
         <Button onClick={fetchWeatherHandler}>Get Weather</Button>
-        {dataExists && <WeatherDisplay data={data}/>}
+        {dataExists && <WeatherDisplay data={data} condition={condition}/>}
       </Card>
     </div>
   );
