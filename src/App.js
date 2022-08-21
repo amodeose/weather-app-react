@@ -15,15 +15,13 @@ function App() {
   const lon = -79.51579538343675;
   const URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`
 
-  const fetchWeatherHandler = () => {
-    fetch(URL).then(response => {
-      return response.json();
-    }).then(data => {
-      setData(data.main);
-      setCondition(data.weather[0].main)
-      setDataExists(true);
-    })
-  }
+  async function fetchWeatherHandler() {
+    const response = await fetch(URL);
+    const data = await response.json();
+    setData(data.main);
+    setCondition(data.weather[0].main)
+    setDataExists(true);
+  };
 
   return (
     <div>
