@@ -1,3 +1,3 @@
-const key = "1234";
+const key = "12345";
 
 export default key;
