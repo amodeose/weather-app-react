@@ -9,7 +9,7 @@ const WeatherDisplay = (props) => {
       <h3 className={classes.condition}>{props.condition}</h3>
       <div className={classes.display}>
         <Icon condition={props.condition} />
-        <MainStats data={props.data} condition={props.condition} />
+        <MainStats stats={props.stats} condition={props.condition} />
       </div>
     </Card>
   );

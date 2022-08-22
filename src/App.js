@@ -5,7 +5,7 @@ import WeatherDisplay from "./components/WeatherDisplay";
 import classes from "./App.module.css";
 
 function App() {
-  const [data, setData] = useState("");
+  const [stats, setStats] = useState("");
   const [condition, setCondition] = useState("");
   const [dataExists, setDataExists] = useState(false);
 
@@ -16,7 +16,7 @@ function App() {
   async function fetchWeatherHandler() {
     const response = await fetch(URL);
     const data = await response.json();
-    setData(data.main);
+    setStats(data.main);
     setCondition(data.weather[0].main);
     setDataExists(true);
   }
@@ -27,7 +27,7 @@ function App() {
         <Button onClick={fetchWeatherHandler}>Get Weather</Button>
       </header>
 
-      {dataExists && <WeatherDisplay data={data} condition={condition} />}
+      {dataExists && <WeatherDisplay stats={stats} condition={condition} />}
     </div>
   );
 }

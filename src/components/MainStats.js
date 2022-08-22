@@ -5,19 +5,19 @@ const MainStats = (props) => {
     <div className={classes['main-stats']}>
       <p>
         <strong>Temp: </strong>
-        {props.data.temp}°C
+        {props.stats.temp}°C
       </p>
       <p>
         <strong>Max Temp: </strong>
-        {props.data.temp_max}°C
+        {props.stats.temp_max}°C
       </p>
       <p>
         <strong>Min Temp: </strong>
-        {props.data.temp_min}°C
+        {props.stats.temp_min}°C
       </p>
       <p>
         <strong>Humidity: </strong>
-        {props.data.humidity}%
+        {props.stats.humidity}%
       </p>
     </div>
   );
