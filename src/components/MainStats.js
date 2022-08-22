@@ -1,6 +1,8 @@
+import classes from './MainStats.module.css';
+
 const MainStats = (props) => {
   return (
-    <div>
+    <div className={classes['main-stats']}>
       <p>
         <strong>Temp: </strong>
         {props.data.temp}°C
