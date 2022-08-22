@@ -8,12 +8,8 @@ const MainStats = (props) => {
         {props.stats.temp}°C
       </p>
       <p>
-        <strong>Max Temp: </strong>
-        {props.stats.temp_max}°C
-      </p>
-      <p>
-        <strong>Min Temp: </strong>
-        {props.stats.temp_min}°C
+        <strong>Feels Like: </strong>
+        {props.stats.feels_like}°C
       </p>
       <p>
         <strong>Humidity: </strong>
