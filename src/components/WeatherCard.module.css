@@ -1,0 +1,9 @@
+.display {
+    display: flex;
+    justify-content: space-between;
+}
+
+.condition {
+    text-align: center;
+    text-decoration: underline;
+}

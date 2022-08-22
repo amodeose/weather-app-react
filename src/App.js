@@ -1,15 +1,14 @@
 import Button from "./UI/Button";
 import key from "./key";
 import { useState } from "react";
-import WeatherDisplay from "./components/WeatherDisplay";
 import classes from "./App.module.css";
-import Card from "./UI/Card";
+import WeatherDisplay from "./components/WeatherDisplay";
 
 function App() {
   const [stats, setStats] = useState("");
   const [condition, setCondition] = useState("");
   const [isLoading, setIsLoading] = useState(false);
- 
+
   const lat = 43.707310971342956;
   const lon = -79.51579538343675;
   const URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`;
@@ -26,10 +25,9 @@ function App() {
   return (
     <div>
       <header className={classes.nav}>
-        <Button onClick={fetchWeatherHandler}>Get Weather</Button>
+        <Button onClick={fetchWeatherHandler}>Get Current Weather</Button>
       </header>
-      {isLoading && <Card className={classes.loading}><h3>Loading...</h3></Card>}
-      {!isLoading && condition.length > 0 && <WeatherDisplay stats={stats} condition={condition} />}
+      <WeatherDisplay isLoading={isLoading} stats={stats} condition={condition}/>
     </div>
   );
 }
