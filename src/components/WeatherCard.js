@@ -3,16 +3,16 @@ import MainStats from "./MainStats";
 import Icon from "./Icon";
 import Card from "../UI/Card";
 
-const WeatherDisplay = (props) => {
+const WeatherCard = (props) => {
   return (
     <Card>
-      <h3 className={classes.condition}>{props.condition}</h3>
+      <h3 className={classes.condition}>{props.weatherInfo.weather[0].main}</h3>
       <div className={classes.display}>
-        <Icon condition={props.condition} />
-        <MainStats stats={props.stats} condition={props.condition} />
+        <Icon condition={props.weatherInfo.weather[0].main} />
+        <MainStats stats={props.weatherInfo.main} />
       </div>
     </Card>
   );
 };
 
-export default WeatherDisplay;
+export default WeatherCard;

@@ -10,8 +10,8 @@ const WeatherDisplay = (props) => {
           <h3>Loading...</h3>
         </Card>
       )}
-      {!props.isLoading && props.condition.length > 0 && (
-        <WeatherCard stats={props.stats} condition={props.condition} />
+      {!props.isLoading && props.currentWeather != null && (
+        <WeatherCard weatherInfo={props.currentWeather} />
       )}
     </div>
   );

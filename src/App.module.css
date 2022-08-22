@@ -1,8 +1,10 @@
 .nav {
     background-color: white;
     height: 2rem;
-    text-align: center;
-    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 19.5rem;
 }
 
 .loading {
