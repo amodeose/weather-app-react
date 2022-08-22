@@ -21,6 +21,9 @@ const Icon = (props) => {
     case 'Clear':
       image = sun;
       break;
+    case 'Mist':
+      image = cloud;
+      break;
     default:
       break;
   };

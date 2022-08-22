@@ -9,8 +9,8 @@ function App() {
   const [hourlyForecast, setHourlyForecast] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const lat = 43.707310971342956;
-  const lon = -79.51579538343675;
+  const lat = 43.70;
+  const lon = -79.51;
   const currentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`;
   const hourlyForecastURL = `https://api.openweathermap.org/data/2.5/forecast/hourly?lat=${lat}&lon=${lon}&appid=${key}&units=metric`;
 
@@ -19,14 +19,16 @@ function App() {
     const response = await fetch(currentWeatherURL);
     const data = await response.json();
     setCurrentWeather(data);
+    setHourlyForecast(null);
     setIsLoading(false);
   }
 
   async function fetchHourlyForecast() {
     setIsLoading(true);
-    const response = await fetch(currentWeatherURL);
+    const response = await fetch(hourlyForecastURL);
     const data = await response.json();
-    setCurrentWeather(data);
+    setHourlyForecast(data);
+    setCurrentWeather(null);
     setIsLoading(false);
   }
 
@@ -36,7 +38,7 @@ function App() {
         <Button onClick={fetchCurrentWeather}>Current Weather</Button>
         <Button onClick={fetchHourlyForecast}>Hourly Forecast</Button>
       </header>
-      <WeatherDisplay isLoading={isLoading} currentWeather={currentWeather}/>
+      <WeatherDisplay isLoading={isLoading} currentWeather={currentWeather} hourlyForecast={hourlyForecast}/>
     </div>
   );
 }
