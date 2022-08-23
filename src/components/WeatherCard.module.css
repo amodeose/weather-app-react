@@ -1,9 +1,13 @@
-.display {
+.main {
     display: flex;
     justify-content: space-between;
 }
 
-.condition {
+.head {
     text-align: center;
     text-decoration: underline;
+}
+
+.head h3 {
+    display: inline;
 }

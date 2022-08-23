@@ -3,8 +3,8 @@
     height: 2rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 1rem 19.5rem;
+    justify-content:center;
+    padding: 1rem 30%;
 }
 
 .loading {
