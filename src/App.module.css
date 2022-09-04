@@ -4,9 +4,21 @@
     display: flex;
     align-items: center;
     justify-content:center;
-    padding: 1rem 30%;
+    padding: 1rem;
 }
 
 .loading {
     text-align: center;
+}
+
+.nav input {
+    font-weight: bold;
+    padding: 0.25rem 1rem;
+    border-radius: 12px;
+    margin: 0 1rem;
+    text-align: center;
+    border: 2px solid #222f3e;
+    color: #222f3e;
+    width: 8rem;
+    height: 1.5rem;
 }
