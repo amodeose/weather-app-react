@@ -8,11 +8,23 @@ function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [latitude, setLatitude] = useState(43.70);
+  const [longitude, setLongitude] = useState(-79.51);
 
   const lat = 43.70;
   const lon = -79.51;
   const currentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`;
   const forecastURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}&units=metric`;
+  const geoURL = `http://api.openweathermap.org/geo/1.0/direct?q=Toronto&limit=1&appid=${key}`
+
+
+  async function fetchCoords() {
+    const response = await fetch(geoURL);
+    const data = await response.json();
+    console.log(data);
+  }
+
+  fetchCoords();
 
   async function fetchCurrentWeather() {
     setIsLoading(true);
