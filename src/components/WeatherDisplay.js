@@ -4,6 +4,14 @@ import WeatherCard from "./WeatherCard";
 
 const WeatherDisplay = (props) => {
   
+  if (props.httpError) {
+    return (
+      <Card className={classes.error}>
+        <h3>Cannot retrieve data for entered city. Please double check your spelling.</h3>
+      </Card>
+    )
+  };
+
   if (props.isLoading) {
     return (
       <Card className={classes.loading}>
@@ -14,7 +22,7 @@ const WeatherDisplay = (props) => {
 
   let forecastCards;
 
-  if (props.forecast != null) {
+  if (props.forecast !== null) {
     let hours = 0;
     forecastCards = props.forecast.list.map((item, index) => {
       hours = hours + 3;
@@ -24,10 +32,10 @@ const WeatherDisplay = (props) => {
 
   return (
     <main className={classes.main}>
-      {props.currentWeather != null && (
+      {props.currentWeather !== null && (
         <WeatherCard weatherInfo={props.currentWeather} hours={null}/>
       )}
-      {props.forecast != null && forecastCards}
+      {props.forecast !== null && forecastCards}
     </main>
   );
 };

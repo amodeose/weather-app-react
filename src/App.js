@@ -8,7 +8,7 @@ function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [httpError, setHttpError] = useState();
+  const [httpError, setHttpError] = useState(null);
  
   const cityRef = useRef();
   
@@ -23,6 +23,7 @@ function App() {
   };
 
   async function fetchCurrentWeather() {
+    setHttpError(null);
     setIsLoading(true);
     const [lat, lon] = await fetchCoords().catch(error => {
       setIsLoading(false);
@@ -36,6 +37,7 @@ function App() {
   }
 
   async function fetchForecast() {
+    setHttpError(null);
     setIsLoading(true);
     const [lat, lon] = await fetchCoords().catch(error => {
       setIsLoading(false);
