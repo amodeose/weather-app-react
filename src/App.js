@@ -8,19 +8,26 @@ function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [httpError, setHttpError] = useState();
  
   const cityRef = useRef();
   
   async function fetchCoords() {
     const city = cityRef.current.value;
     const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${key}`);
+    if (!response.ok) {
+      throw new Error('Something went wrong!');
+    }
     const data = await response.json();
     return [data[0].lat, data[0].lon];
   };
 
   async function fetchCurrentWeather() {
     setIsLoading(true);
-    const [lat, lon] = await fetchCoords();
+    const [lat, lon] = await fetchCoords().catch(error => {
+      setIsLoading(false);
+      setHttpError(error.message);
+    });
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`);
     const data = await response.json();
     setCurrentWeather(data);
@@ -30,7 +37,10 @@ function App() {
 
   async function fetchForecast() {
     setIsLoading(true);
-    const [lat, lon] = await fetchCoords();
+    const [lat, lon] = await fetchCoords().catch(error => {
+      setIsLoading(false);
+      setHttpError(error.message);
+    });
     const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}&units=metric`);
     const data = await response.json();
     setForecast(data);
@@ -45,7 +55,7 @@ function App() {
         <Button onClick={fetchCurrentWeather}>Current Weather</Button>
         <Button onClick={fetchForecast}>Forecast</Button>
       </header>
-      <WeatherDisplay isLoading={isLoading} currentWeather={currentWeather} forecast={forecast}/>
+      <WeatherDisplay isLoading={isLoading} httpError={httpError} currentWeather={currentWeather} forecast={forecast}/>
     </div>
   );
 }
