@@ -9,6 +9,7 @@ function App() {
   const [forecast, setForecast] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [httpError, setHttpError] = useState(null);
+  const [location, setLocation] = useState();
  
   const cityRef = useRef();
   
@@ -19,6 +20,7 @@ function App() {
       throw new Error('Something went wrong!');
     }
     const data = await response.json();
+    setLocation(data[0]);
     return [data[0].lat, data[0].lon];
   };
 
@@ -53,10 +55,11 @@ function App() {
   return (
     <div>
       <header className={classes.nav}>
-        <input ref={cityRef} placeholder="Please enter a city"/>
+        <input type="text" autoComplete="city" ref={cityRef} placeholder="Please enter a city"/>
         <Button onClick={fetchCurrentWeather}>Current Weather</Button>
         <Button onClick={fetchForecast}>Forecast</Button>
       </header>
+      {location && <h1 className={classes.location}>{location.name}, {location.state} {location.country}</h1>}
       <WeatherDisplay isLoading={isLoading} httpError={httpError} currentWeather={currentWeather} forecast={forecast}/>
     </div>
   );
